@@ -1,0 +1,228 @@
+package component;
+
+import com.badlogic.gdx.math.Vector2;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+
+/**
+ * Holds a copy of every component for easy individual updating
+ * Created by Edmund on 1/14/14.
+ */
+public class ComponentManager {
+
+    /** Store Components based on their type */
+    private HashMap<Class, LinkedList<Component>> typeMappings;
+    private LinkedList<Component> deadComponents;
+
+    /** Maps IDs to the GameObjects Components comprise*/
+    private ArrayList<GameObject> idMapping;
+    private final int INITIAL_ID_CAPACITY = 50;
+    private int mappingCapacity;
+    private int idIndex;
+
+    public ComponentManager()
+    {
+        typeMappings = new HashMap<>();
+        deadComponents = new LinkedList<>();
+
+        idMapping = new ArrayList<>(INITIAL_ID_CAPACITY);
+        mappingCapacity = INITIAL_ID_CAPACITY;
+        for (int i = 0; i < INITIAL_ID_CAPACITY; i++) idMapping.add(null);
+        idIndex = 0;
+    }
+
+    /**
+     * Packages components into a GameObject, assigns the ID
+     * of the GameObject, and places the GameObject i*n memory
+     * @param components
+     */
+    public void packageComponents(List<Component> components)
+    {
+        //First assign an ID
+        int nextIndex = nextGameObjectIndex();
+        //System.out.println("new index: " + nextIndex);
+
+        //Second, create GameObject and add Components
+        //Third, add each component to their respective lists
+        GameObject obj = new GameObject();
+        for (Component c : components)
+        {
+            c.setObjectID(nextIndex);
+            obj.addComponent(c);
+            this.addComponent(c);
+        }
+
+        //Finally, add GameObject at designated index
+        idMapping.set(nextIndex, obj);
+    }
+
+    /**
+     * Return the next available space on idMapping
+     * Something here isn't working.
+     * @return an available index
+     */
+    private int nextGameObjectIndex()
+    {
+        int indicesChecked = 0;
+        boolean indexFound = false;
+        int nextIndex = -1;
+        while (!indexFound)
+        {
+            GameObject currentObj = idMapping.get(idIndex);
+            //If current is null, then we never declared it.
+            if (currentObj == null)
+            {
+                nextIndex = idIndex;
+                indexFound = true;
+            }
+            else if (!currentObj.isAlive())
+            {
+                removeGameObject(idIndex);
+                nextIndex = idIndex;
+                indexFound = true;
+            }
+            else
+            {
+                indicesChecked++;
+            }
+
+            System.out.println("...");
+            //If we've checked all objects allocate more space
+
+            if (indicesChecked == mappingCapacity)
+            {
+                System.out.println("Gotta expand capacity");
+                int oldCapacity = mappingCapacity;
+                mappingCapacity += INITIAL_ID_CAPACITY;
+                idMapping.ensureCapacity(mappingCapacity);
+                System.out.println("Gotta expand capacity");
+                for (int i = oldCapacity; i < mappingCapacity; i++)
+                {
+                }
+
+                indicesChecked = 0;
+                idIndex = 0;
+            }
+            else
+            {
+                int next = idIndex + 1;
+                idIndex = (next == mappingCapacity)? 0 : next;
+            }
+
+
+        }
+
+        System.out.println("Next: " + nextIndex);
+        return nextIndex;
+    }
+
+    /**
+     * When a GameObject dies, must remove its components
+     * from the typeMappings.
+     * @param id
+     */
+    public void removeGameObject(int id)
+    {
+        System.out.println("Proceeding with removal of " + id);
+        LinkedList<Component> deadComponents = getGameObjComponents(id);
+        for (Component c : deadComponents)
+        {
+            if (c instanceof PhysicsComponent)
+            {
+                PhysicsComponent p = (PhysicsComponent)c;
+                Vector2 v = p.getPosition();
+                System.out.println("Removed at " + v.x + " " + v.y);
+
+            }
+
+            Class componentClass = c.getClass();
+            getAllComponentsOfClass(componentClass).remove(c);
+        }
+        idMapping.set(id, null);
+    }
+
+    /**
+     * For a given GameObject, mark that it is dead
+     * and that its constituent Components are dead
+     * @param id
+     */
+    public void markGameObjectDeath(int id)
+    {
+        GameObject specifiedObj = idMapping.get(id);
+        specifiedObj.markDead();
+        //System.out.println("Object " + id + " now alivestate: " + specifiedObj.isAlive());
+        LinkedList<Component> componentsInID = getGameObjComponents(id);
+        for (Component c : componentsInID)
+        {
+            c.markDead();
+        }
+    }
+
+    /**
+     * Utility method.
+     * Get the list of Components from the GameObject by id
+     */
+    private LinkedList<Component> getGameObjComponents(int id)
+    {
+        return idMapping.get(id).getComponents();
+    }
+
+
+    /**
+     * Utility method.
+     * Adds a component to the mappings of component types to
+     * component lists
+     * @param c
+     */
+    private void addComponent(Component c)
+    {
+        if (typeMappings.containsKey(c.getClass()))
+        {
+            typeMappings.get(c.getClass()).add(c);
+        }
+        else
+        {
+            LinkedList<Component> newList = new LinkedList<>();
+            newList.add(c);
+            typeMappings.put(c.getClass(), newList);
+        }
+    }
+
+    public Component getComponent(int objectID, Class c)
+    {
+        LinkedList<Component> objComps = getGameObjComponents(objectID);
+        for (Component comp : objComps)
+        {
+            if (comp.getClass() == c)
+            {
+                return comp;
+            }
+        }
+        return null;
+    }
+
+    public Component getComponent(Component givenComponent, Class c)
+    {
+        return getComponent(givenComponent.getObjectID(), c);
+    }
+
+    public LinkedList<Component> getAllComponentsOfClass(Class c)
+    {
+        return typeMappings.get(c);
+    }
+
+    public void updateComponentsOfClass(Class c, float dt)
+    {
+        LinkedList<Component> componentsOfType = typeMappings.get(c);
+        if (componentsOfType == null) return;
+
+        for (Component comp : componentsOfType)
+        {
+            if (comp.isAlive()) comp.update(dt);
+        }
+    }
+
+}

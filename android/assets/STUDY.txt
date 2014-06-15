@@ -1,0 +1,28 @@
+"C:\Program Files\Java\jdk1.7.0_25\bin\java" -Didea.launcher.port=7565 "-Didea.launcher.bin.path=C:\Program Files (x86)\JetBrains\IntelliJ IDEA Community Edition 13.0.1\bin" -Dfile.encoding=UTF-8 -classpath "C:\Users\Edmund\AppData\Local\Android\android-sdk\platforms\android-19\android.jar;C:\Users\Edmund\AppData\Local\Android\android-sdk\platforms\android-19\data\res;C:\Users\Edmund\AppData\Local\Android\android-sdk\tools\support\annotations.jar;C:\Users\Edmund\libgdx-gradle-template\out\production\desktop;C:\Users\Edmund\.gradle\caches\modules-2\files-2.1\com.badlogicgames.gdx\gdx-backend-lwjgl\0.9.9\329328f78f76cd3ea98c412ee601af6220aeca18\gdx-backend-lwjgl-0.9.9.jar;C:\Users\Edmund\.gradle\caches\modules-2\files-2.1\com.badlogicgames.gdx\gdx-platform\0.9.9\23865d0cf9519807f21c60570bbaa3c4e01b8517\gdx-platform-0.9.9-natives-desktop.jar;C:\Users\Edmund\.gradle\caches\modules-2\files-2.1\com.badlogicgames.gdx\gdx\0.9.9\aa997660c06feae9e7f7ff318b4fa217ebae3fb5\gdx-0.9.9.jar;C:\Users\Edmund\.gradle\caches\modules-2\files-2.1\org.lwjgl.lwjgl\lwjgl-platform\2.9.0\2ba5dcb11048147f1a74eff2deb192c001321f77\lwjgl-platform-2.9.0-natives-linux.jar;C:\Users\Edmund\.gradle\caches\modules-2\files-2.1\org.lwjgl.lwjgl\lwjgl-platform\2.9.0\6621b382cb14cc409b041d8d72829156a87c31aa\lwjgl-platform-2.9.0-natives-osx.jar;C:\Users\Edmund\.gradle\caches\modules-2\files-2.1\org.lwjgl.lwjgl\lwjgl-platform\2.9.0\3f11873dc8e84c854ec7c5a8fd2e869f8aaef764\lwjgl-platform-2.9.0-natives-windows.jar;C:\Users\Edmund\.gradle\caches\modules-2\files-2.1\net.java.jutils\jutils\1.0.0\e12fe1fda814bd348c1579329c86943d2cd3c6a6\jutils-1.0.0.jar;C:\Users\Edmund\.gradle\caches\modules-2\files-2.1\net.java.jinput\jinput\2.0.5\39c7796b469a600f72380316f6b1f11db6c2c7c4\jinput-2.0.5.jar;C:\Users\Edmund\.gradle\caches\modules-2\files-2.1\org.lwjgl.lwjgl\lwjgl\2.9.0\5654d06e61a1bba7ae1e7f5233e1106be64c91cd\lwjgl-2.9.0.jar;C:\Users\Edmund\.gradle\caches\modules-2\files-2.1\com.badlogicgames.jlayer\jlayer\1.0.1-gdx\7cca83cec5c1b2f011362f4d85aabd71a73b049d\jlayer-1.0.1-gdx.jar;C:\Users\Edmund\.gradle\caches\modules-2\files-2.1\org.jcraft\jorbis\0.0.17\8872d22b293e8f5d7d56ff92be966e6dc28ebdc6\jorbis-0.0.17.jar;C:\Users\Edmund\.gradle\caches\modules-2\files-2.1\com.badlogicgames.gdx\gdx-openal\0.9.9\71624eb8ed88843ccd2a3d255bcc0c8531cedbb0\gdx-openal-0.9.9.jar;C:\Users\Edmund\.gradle\caches\modules-2\files-2.1\net.java.jinput\jinput-platform\2.0.5\7ff832a6eb9ab6a767f1ade2b548092d0fa64795\jinput-platform-2.0.5-natives-linux.jar;C:\Users\Edmund\.gradle\caches\modules-2\files-2.1\net.java.jinput\jinput-platform\2.0.5\53f9c919f34d2ca9de8c51fc4e1e8282029a9232\jinput-platform-2.0.5-natives-osx.jar;C:\Users\Edmund\.gradle\caches\modules-2\files-2.1\net.java.jinput\jinput-platform\2.0.5\385ee093e01f587f30ee1c8a2ee7d408fd732e16\jinput-platform-2.0.5-natives-windows.jar;C:\Users\Edmund\.gradle\caches\modules-2\files-2.1\org.lwjgl.lwjgl\lwjgl_util\2.9.0\a778846b64008fc7f48ead2377f034e547991699\lwjgl_util-2.9.0.jar;C:\Users\Edmund\libgdx-gradle-template\out\production\core;C:\Users\Edmund\libgdx-gradle-template\android\libs\luaj\luaj-jme-3.0-beta1.jar;C:\Users\Edmund\libgdx-gradle-template\android\libs\luaj\luaj-jse-3.0-beta1.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA Community Edition 13.0.1\lib\idea_rt.jar" com.intellij.rt.execution.application.AppMain com.badlogic.gradletest.DesktopLauncher
+Setting stage
+1 is too small
+It took 5987 ns to resizeto 2 capacity
+2 is too small
+It took 6842 ns to resizeto 4 capacity
+4 is too small
+It took 5560 ns to resizeto 8 capacity
+8 is too small
+It took 4277 ns to resizeto 16 capacity
+16 is too small
+It took 9836 ns to resizeto 32 capacity
+32 is too small
+It took 7270 ns to resizeto 64 capacity
+64 is too small
+It took 15823 ns to resizeto 128 capacity
+128 is too small
+It took 21810 ns to resizeto 256 capacity
+256 is too small
+It took 40627 ns to resizeto 512 capacity
+512 is too small
+It took 96222 ns to resizeto 1024 capacity
+1024 is too small
+It took 148823 ns to resizeto 2048 capacity
+2048 is too small
+It took 381893 ns to resizeto 4096 capacity
+
+Process finished with exit code -1
